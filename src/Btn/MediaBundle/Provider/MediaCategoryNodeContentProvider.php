@@ -71,7 +71,7 @@ class MediaCategoryNodeContentProvider implements NodeContentProviderInterface
      */
     public function resolveControlRouteParameters($formData = array())
     {
-        return isset($formData['category']) ? array('id' => $formData['category']) : array();
+        return isset($formData['category']) ? array('category' => $formData['category']) : array();
     }
 
     /**
