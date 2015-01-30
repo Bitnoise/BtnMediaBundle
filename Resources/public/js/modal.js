@@ -191,7 +191,8 @@
             }
             //bind reset hidden select and button text
             newEl.click(function(){
-                mediaSelects.val(null);
+                mediaSelect = $(this).parent().find('select.btn-media');
+                mediaSelect.val(null);
                 if (openedFrom == null) {
                     resetButton(newEl.prev());
                 } else {
