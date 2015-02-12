@@ -1,6 +1,8 @@
 BtnMediaBundle
 ==============
 
+[Icons source](https://github.com/teambox/Free-file-icons/)
+
 ### Step 1: Add MediaBundle in your composer.json (private repo)
 
 ```js

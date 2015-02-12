@@ -65,6 +65,7 @@ abstract class AbstractMedia extends AbstractFile implements MediaInterface
      */
     protected $previewIcons = array(
         'application/pdf' => 'bundles/btnmedia/images/pdf.png',
+        'application/zip' => 'bundles/btnmedia/images/zip.png',
     );
 
     /**
