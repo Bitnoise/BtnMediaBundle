@@ -37,7 +37,7 @@ services:
 
     btn_media.uploader.media:
         class: %btn_media.uploader.media.class%
-        arguments: [%kernel.cache_dir%]
+        arguments: [%kernel.cache_dir%, %btn_media.media.auto_extract%]
         calls:
             - [setAllowedExtensions, [%btn_media.media.allowed_extensions%]]
 

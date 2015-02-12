@@ -27,6 +27,7 @@ class Configuration implements ConfigurationInterface
                             ->end()
                         ->end()
                         ->scalarNode('max_size')->defaultValue(null)->example('10M')->end()
+                        ->booleanNode('auto_extract')->defaultValue(true)->end()
                     ->end()
                 ->end()
                 ->arrayNode('media_category')

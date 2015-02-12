@@ -27,13 +27,16 @@ class MediaUploader
     private $cacheDirectory;
     /** @var Btn\MediaBundle\Adapter\AdapterInterface\ $adapter */
     private $adapter;
+    /** @var boolean $autoExtract */
+    private $autoExtract;
 
     /**
      *
      */
-    public function __construct($cacheDirectory)
+    public function __construct($cacheDirectory, $autoExtract = true)
     {
         $this->cacheDirectory = $cacheDirectory;
+        $this->autoExtract = $autoExtract;
 
         $this->reset();
     }
@@ -316,7 +319,7 @@ class MediaUploader
         }
 
         if ($file) {
-            if ('zip' === $file->guessExtension()) {
+            if ($this->autoExtract && 'zip' === $file->guessExtension()) {
                 $this->handleZip($file);
             } else {
                 $this->saveUpload($file);
