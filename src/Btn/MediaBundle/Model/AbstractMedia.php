@@ -262,7 +262,7 @@ abstract class AbstractMedia extends AbstractFile implements MediaInterface
      */
     public function getCategoryName()
     {
-        return $this->category->getName();
+        return $this->category ? $this->category->getName() : null;
     }
 
     /**
