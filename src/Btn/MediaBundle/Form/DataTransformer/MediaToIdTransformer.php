@@ -23,7 +23,7 @@ class MediaToIdTransformer implements DataTransformerInterface
     /**
      *
      */
-    public function transform($page)
+    public function transform($media)
     {
         if (null === $media) {
             return "";
