@@ -32,10 +32,10 @@
                 <td class="btn-admin-column-id">{{ entity.id }}</td>
                 <td>{{ entity.name }}</td>
                 <td>
-                    {% if entity.isImaginable %}
+                    {% if entity.isThumbable %}
                         <img src="{{ entity.path|imagine_filter('btn_media_thumb') }}" />
-                    {% elseif entity.isPreviewable %}
-                        <img src="{{ entity.previewPath|imagine_filter('btn_media_thumb') }}" />
+                    {% elseif entity.isIconable %}
+                        <img src="{{ entity.iconPath|imagine_filter('btn_media_icon') }}" />
                     {% else %}
                         {{ gi('ban-circle') }}
                     {% endif %}

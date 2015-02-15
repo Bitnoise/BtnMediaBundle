@@ -18,10 +18,10 @@
         <div class="col-md-6">
             {% if entity.isFileInEntity|default(false) %}
                 <p>Current image (preview):</p>
-                {% if entity.isImaginable %}
+                {% if entity.isThumbable %}
                     <p>{{ img(entity, {class: 'full-width'}, 'btn_media_preview') }}</p>
-                {% elseif entity.isPreviewable %}
-                    <img src="{{ entity.previewPath|imagine_filter('btn_media_thumb') }}" />
+                {% elseif entity.isIconable %}
+                    <img src="{{ entity.iconPath|imagine_filter('btn_media_icon') }}" />
                 {% else %}
                     {{ gi('ban-circle') }}
                 {% endif %}

@@ -58,14 +58,15 @@ abstract class AbstractMedia extends AbstractFile implements MediaInterface
     /**
      *
      */
-    protected $previewExtensions = array('jpeg', 'jpg', 'png', 'gif');
+    protected $thumbExtensions = array('jpeg', 'jpg', 'png', 'gif');
 
     /**
      *
      */
     protected $previewIcons = array(
-        'application/pdf' => 'bundles/btnmedia/images/pdf.png',
-        'application/zip' => 'bundles/btnmedia/images/zip.png',
+        'application/pdf' => 'pdf.png',
+        'application/zip' => 'zip.png',
+        '_default'        => '_blank.png',
     );
 
     /**
@@ -89,22 +90,6 @@ abstract class AbstractMedia extends AbstractFile implements MediaInterface
         $this->name = $name;
 
         return $this;
-    }
-
-    /**
-     *
-     */
-    protected function getUploadDir()
-    {
-        return 'uploads/media';
-    }
-
-    /**
-     *
-     */
-    public function getMediaPath()
-    {
-        return $this->getUploadRootDir().'/'.$this->file;
     }
 
     /**
@@ -147,16 +132,16 @@ abstract class AbstractMedia extends AbstractFile implements MediaInterface
     {
         $file = $this->getFile();
 
-        return $file ? strtolower(substr($file, strrpos($file, ".") + 1)) : $file;
+        return $file ? strtolower(substr($file, strrpos($file, '.') + 1)) : $file;
     }
 
     /**
      *
      */
-    public function isImaginable()
+    public function isThumbable()
     {
         $extension = $this->getFileExt();
-        if (($extension && in_array(strtolower($extension), $this->previewExtensions))) {
+        if (($extension && in_array(strtolower($extension), $this->thumbExtensions))) {
             return true;
         }
 
@@ -166,23 +151,23 @@ abstract class AbstractMedia extends AbstractFile implements MediaInterface
     /**
      *
      */
-    public function isPreviewable()
+    public function isIconable()
     {
-        return $this->getPreviewPath() ? true : false;
+        return $this->getIconPath() ? true : false;
     }
 
     /**
      *
      */
-    public function getPreviewPath()
+    public function getIconPath()
     {
-        if ($this->isImaginable()) {
-            return $this->getPath();
-        }
-
         $type = $this->getType();
         if ($type && !empty($this->previewIcons[$type])) {
             return $this->previewIcons[$type];
+        }
+
+        if (!empty($this->previewIcons['_default'])) {
+            return $this->previewIcons['_default'];
         }
 
         return false;
@@ -282,23 +267,23 @@ abstract class AbstractMedia extends AbstractFile implements MediaInterface
      */
     public function getPath()
     {
-        return $this->getUploadDir().DIRECTORY_SEPARATOR.$this->file;
+        return $this->file;
     }
 
     /**
      *
      */
-    public function setPreviewExtensions(array $previewExtensions)
+    public function setThumbExtensions(array $thumbExtensions)
     {
-        $this->previewExtensions = $previewExtensions;
+        $this->thumbExtensions = $thumbExtensions;
     }
 
     /**
      *
      */
-    public function getPreviewExtensions()
+    public function getThumbExtensions()
     {
-        return $this->previewExtensions;
+        return $this->thumbExtensions;
     }
 
     /**

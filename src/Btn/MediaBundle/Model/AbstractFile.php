@@ -46,22 +46,4 @@ abstract class AbstractFile
 
         return $this->$method($path);
     }
-
-    /**
-     *
-     */
-    public function getUploadRootPath()
-    {
-        return $this->getUploadRootDir().$this->getPath();
-    }
-
-    /**
-     *
-     */
-    public function getUploadRootDir()
-    {
-        // the absolute directory path where uploaded
-        // documents should be saved
-        return __DIR__.'/../../../../../../web/'.$this->getUploadDir();
-    }
 }

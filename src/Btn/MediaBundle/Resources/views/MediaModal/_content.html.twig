@@ -9,15 +9,15 @@
                     <p>{{ entity.name }}</p>
                 </div>
                 <div class="col-md-6 item" title="{{ entity.name }}" data-id="{{ entity.id }}">
-                    {% if entity.isImaginable %}
+                    {% if entity.isThumbable %}
                         <img src="{{ entity.path|imagine_filter('btn_media_thumb') }}"
                              class="img-polaroid"
                              data-id="{{ entity.id }}"
                              data-filename="{{ entity.name }}"
                              data-original="{{ media_host is defined ? media_host ~ entity.file : asset(entity.path) }}"
                         />
-                    {% elseif entity.isPreviewable %}
-                        <img src="{{ entity.previewPath|imagine_filter('btn_media_thumb') }}"
+                    {% elseif entity.isIconable %}
+                        <img src="{{ entity.iconPath|imagine_filter('btn_media_icon') }}"
                              data-id="{{ entity.id }}"
                              data-filename="{{ entity.name }}"
                              data-original="{{ media_host is defined ? media_host ~ entity.file : asset(entity.path) }}"
