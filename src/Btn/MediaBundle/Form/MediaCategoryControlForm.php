@@ -32,7 +32,7 @@ class MediaCategoryControlForm extends AbstractForm
         parent::setDefaultOptions($resolver);
 
         $resolver->setDefaults(array(
-            'action' => $this->router->generate($this->getActionRouteName(), $this->getActionRouteParams())
+            'action' => $this->router->generate($this->getActionRouteName(), $this->getActionRouteParams()),
         ));
     }
 

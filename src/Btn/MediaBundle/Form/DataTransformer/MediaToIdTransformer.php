@@ -42,7 +42,7 @@ class MediaToIdTransformer implements DataTransformerInterface
     public function reverseTransform($id)
     {
         if (!$id) {
-            return null;
+            return;
         }
 
         if ($id instanceof MediaInterface) {

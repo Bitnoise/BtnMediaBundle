@@ -12,9 +12,9 @@ abstract class AbstractFile
      */
     public function getFile()
     {
-         $method = 'get'.ucfirst($this->fieldFile);
+        $method = 'get'.ucfirst($this->fieldFile);
 
-         return $this->$method();
+        return $this->$method();
     }
 
     /**
@@ -22,9 +22,9 @@ abstract class AbstractFile
      */
     public function setFile($file)
     {
-         $method = 'set'.ucfirst($this->fieldFile);
+        $method = 'set'.ucfirst($this->fieldFile);
 
-         return $this->$method($file);
+        return $this->$method($file);
     }
 
     /**
@@ -32,9 +32,9 @@ abstract class AbstractFile
      */
     public function getPath()
     {
-         $method = 'get'.ucfirst($this->fieldPath);
+        $method = 'get'.ucfirst($this->fieldPath);
 
-         return $this->$method();
+        return $this->$method();
     }
 
     /**
@@ -42,9 +42,9 @@ abstract class AbstractFile
      */
     public function setPath($path)
     {
-         $method = 'set'.ucfirst($this->fieldPath);
+        $method = 'set'.ucfirst($this->fieldPath);
 
-         return $this->$method($path);
+        return $this->$method($path);
     }
 
     /**
@@ -52,7 +52,7 @@ abstract class AbstractFile
      */
     public function getUploadRootPath()
     {
-         return $this->getUploadRootDir().$this->getPath();
+        return $this->getUploadRootDir().$this->getPath();
     }
 
     /**

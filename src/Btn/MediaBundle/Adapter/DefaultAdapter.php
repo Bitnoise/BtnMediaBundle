@@ -10,8 +10,8 @@ use Btn\BaseBundle\Provider\EntityProviderInterface;
 use Btn\MediaBundle\Model\MediaInterface;
 
 /**
-* DefaultAdapter
-*/
+ * DefaultAdapter
+ */
 class DefaultAdapter implements AdapterInterface
 {
     /** @var \Btn\BaseBundle\Provider\EntityProviderInterface $mediaProvider */
