@@ -26,7 +26,7 @@ class MediaToIdTransformer implements DataTransformerInterface
     public function transform($media)
     {
         if (null === $media) {
-            return "";
+            return;
         }
 
         if ($media instanceof MediaInterface) {

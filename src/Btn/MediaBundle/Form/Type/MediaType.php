@@ -42,9 +42,10 @@ class MediaType extends AbstractType
         parent::setDefaultOptions($resolver);
 
         $resolver->setDefaults(array(
-            'empty_value'   => 'btn_media.form.type.media.empty_value',
             'label'         => 'btn_media.form.type.media.label',
-            'class'         => $this->entityProvider->getClass(),
+            'empty_value'   => 'btn_media.form.type.media.empty_value',
+            'class'         => $this->class,
+            'data_class'    => $this->class,
             'attr'          => array(
                 'btn-media'        => $this->router->generate($this->getModalRouteName()),
                 'btn-media-select' => $this->trans('btn_media.form.type.media.select'),

@@ -21,10 +21,10 @@ class IdToMediaQuietTransformer extends IdToMediaTransformer
     /**
      *
      */
-    public function reverseTransform($page)
+    public function reverseTransform($media)
     {
         try {
-            return parent::reverseTransform($page);
+            return parent::reverseTransform($media);
         } catch (TransformationFailedException $exception) {
             return;
         }

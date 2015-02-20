@@ -15,8 +15,8 @@ class IdToMediaTransformer extends MediaToIdTransformer
     /**
      *
      */
-    public function reverseTransform($page)
+    public function reverseTransform($media)
     {
-        return parent::transform($page);
+        return parent::transform($media);
     }
 }

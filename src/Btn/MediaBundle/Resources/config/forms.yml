@@ -33,6 +33,7 @@ services:
     btn_media.form.type.media:
         class: %btn_media.form.type.media.class%
         calls:
+            - [setClass, [%btn_media.media.class%]]
             - [setEntityProvider, [@btn_media.provider.media]]
             - [setTranslator, [@translator]]
             - [setRouter, [@router]]
