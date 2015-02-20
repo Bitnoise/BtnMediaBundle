@@ -142,18 +142,20 @@
         var updateMediaButtons = function (input, filename) {
             var selectBtn  = input.data('select-button'),
                 deleteBtn  = input.data('delete-button'),
-                hideDelete = false;
+                selectBtnText;
 
             if (filename == null) {
-                hideDelete = true;
                 if (input.is('select')) {
-                    filename = input.find('option:selected').text();
+                    selectBtnText = input.find('option:selected').text();
                 } else {
-                    filename = input.val();
+                    selectBtnText = input.val();
                 }
+            } else {
+                selectBtnText = filename;
             }
-            selectBtn.text(filename ? filename : selectMediaBtnText);
-            if (filename) {
+
+            selectBtn.text(selectBtnText || selectMediaBtnText);
+            if (input.val()) {
                 deleteBtn.show();
             } else {
                 deleteBtn.hide();
