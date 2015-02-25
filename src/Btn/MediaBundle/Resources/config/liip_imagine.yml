@@ -1,8 +1,6 @@
 liip_imagine:
     driver: gd
-    web_root: %web_root%
-    cache_prefix:  uploads/media/cache
-    cache_clearer: false
+    data_loader: stream.btn_media
     filter_sets:
         btn_media_icon:
             quality: 75
@@ -12,13 +10,11 @@ liip_imagine:
                 thumbnail: { size: [166, 166], mode: outbound }
         btn_media_thumb:
             quality: 75
-            data_loader: stream.btn_media
             filters:
                 strip: ~
                 thumbnail: { size: [166, 166], mode: outbound }
         btn_media_preview:
             quality: 75
-            data_loader: stream.btn_media
             filters:
                 strip: ~
                 thumbnail: { size: [500, 500], mode: inset }

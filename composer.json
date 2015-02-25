@@ -16,7 +16,7 @@
     ],
     "require": {
         "bitnoise/admin-bundle": "2.0.*",
-        "liip/imagine-bundle": "~0.21.0",
+        "liip/imagine-bundle": "~1.2.0",
         "knplabs/knp-gaufrette-bundle" : "~0.1.0"
     },
     "require-dev": {

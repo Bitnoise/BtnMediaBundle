@@ -15,21 +15,19 @@ services:
         parent: btn_base.provider.abstract_entity
         arguments: [%btn_media.media_category.class%]
 
-    btn_media.liip_imagine.data.loader.stream.btn_media:
-        class: %liip_imagine.data.loader.stream.class%
+    btn_media.liip_imagine.binary.loader.stream.btn_media:
+        class: %liip_imagine.binary.loader.stream.class%
         arguments:
-            - @liip_imagine
             - gaufrette://btn_media/
         tags:
-            - { name: 'liip_imagine.data.loader', loader: 'stream.btn_media' }
+            - { name: liip_imagine.binary.loader, loader: stream.btn_media }
 
-    btn_media.liip_imagine.data.loader.stream.btn_media_icon:
-        class: %liip_imagine.data.loader.stream.class%
+    btn_media.liip_imagine.binary.loader.stream.btn_media_icon:
+        class: %liip_imagine.binary.loader.stream.class%
         arguments:
-            - @liip_imagine
             - gaufrette://btn_media_icon/
         tags:
-            - { name: 'liip_imagine.data.loader', loader: 'stream.btn_media_icon' }
+            - { name: liip_imagine.binary.loader, loader: stream.btn_media_icon }
 
     btn_media.manager.media:
         class: %btn_media.manager.media.class%
