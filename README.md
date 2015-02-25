@@ -44,6 +44,9 @@ btn_media:
     resource: "@BtnMediaBundle/Controller/"
     type:     annotation
     prefix:   /
+    
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"
 ```
 
 ### Step 4: Update your database schema
