@@ -10,13 +10,15 @@ class MediaCategoryNodeContentProvider implements NodeContentProviderInterface
 {
     /** @var \Btn\BaseBundle\Provider\EntityProviderInterface */
     protected $provider;
+    protected $configuration;
 
     /**
      *
      */
-    public function __construct(EntityProviderInterface $provider)
+    public function __construct(EntityProviderInterface $provider, array $configuration)
     {
         $this->provider = $provider;
+        $this->configuration = $configuration;
     }
 
     /**
@@ -24,7 +26,7 @@ class MediaCategoryNodeContentProvider implements NodeContentProviderInterface
      */
     public function isEnabled()
     {
-        return true;
+        return $this->configuration['enabled'];
     }
 
     /**
@@ -47,7 +49,7 @@ class MediaCategoryNodeContentProvider implements NodeContentProviderInterface
      */
     public function resolveRoute($formData = array())
     {
-        return 'btn_media_media_category';
+        return $this->configuration['route_name'];
     }
 
     /**

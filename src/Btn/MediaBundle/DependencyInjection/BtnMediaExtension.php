@@ -21,6 +21,11 @@ class BtnMediaExtension extends AbstractExtension
         $container->setParameter('btn_media.media.max_size', $config['media']['max_size']);
         $container->setParameter('btn_media.media.auto_extract', $config['media']['auto_extract']);
         $container->setParameter('btn_media.media_category.class', $config['media_category']['class']);
+
+        $container->setParameter(
+            'btn_media.node_content_provider.media_category',
+            $config['node_content_provider']['media_category']
+        );
     }
 
     /**

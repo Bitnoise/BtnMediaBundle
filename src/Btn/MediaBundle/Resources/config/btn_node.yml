@@ -6,5 +6,6 @@ services:
         class: %btn_media.provider.media_category_node_content_provider.class%
         arguments:
             provider: @btn_media.provider.media_category
+            configuration: %btn_media.node_content_provider.media_category%
         tags:
             - { name: btn_node.content_provider }

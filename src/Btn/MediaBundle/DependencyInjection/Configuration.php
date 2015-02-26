@@ -4,6 +4,7 @@ namespace Btn\MediaBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 
 class Configuration implements ConfigurationInterface
 {
@@ -42,6 +43,31 @@ class Configuration implements ConfigurationInterface
             ->end()
         ;
 
+        $this->addNodeContentProvider($rootNode);
+
         return $treeBuilder;
+    }
+
+    /**
+     *
+     */
+    private function addNodeContentProvider(ArrayNodeDefinition $node)
+    {
+        $node
+            ->children()
+                ->arrayNode('node_content_provider')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode('media_category')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->booleanNode('enabled')->defaultTrue()->end()
+                                ->scalarNode('route_name')->defaultValue('btn_media_media_category')->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
     }
 }
