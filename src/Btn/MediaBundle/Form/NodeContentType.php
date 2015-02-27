@@ -18,7 +18,7 @@ class NodeContentType extends AbstractType
     {
         $builder
             ->add('category', 'btn_select2_choice', array(
-                'empty_value' => 'Select media category',
+                'placeholder' => 'Select media category',
                 'choices'     => $this->data,
             ))
         ;

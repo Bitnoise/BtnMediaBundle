@@ -25,7 +25,7 @@ class MediaCategoryType extends AbstractType
         parent::configureOptions($resolver);
 
         $resolver->setDefaults(array(
-            'empty_value'   => 'btn_media.form.type.media_category.empty_value',
+            'placeholder'   => 'btn_media.form.type.media_category.placeholder',
             'label'         => 'btn_media.form.type.media_category.label',
             'class'         => $this->entityProvider->getClass(),
             'query_builder' => function (EntityRepository $em) {

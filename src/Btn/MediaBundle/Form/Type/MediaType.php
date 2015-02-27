@@ -43,7 +43,7 @@ class MediaType extends AbstractType
 
         $resolver->setDefaults(array(
             'label'         => 'btn_media.form.type.media.label',
-            'empty_value'   => 'btn_media.form.type.media.empty_value',
+            'placeholder'   => 'btn_media.form.type.media.placeholder',
             'class'         => $this->class,
             'data_class'    => $this->class,
             'attr'          => array(

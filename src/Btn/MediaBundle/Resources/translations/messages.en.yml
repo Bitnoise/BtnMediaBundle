@@ -1,4 +1,4 @@
-btn_media.type.file.empty_value: Choose media
+btn_media.type.file.placeholder: Choose media
 btn_media.type.file.label: Media
 btn_media.category.create: Create category
 btn_media.category.label: Category
@@ -24,11 +24,11 @@ btn_media.mediacategorycontrol_update: Media category update
 
 # Form type
 btn_media.form.type.media.label: Media
-btn_media.form.type.media.empty_value: Select media
+btn_media.form.type.media.placeholder: Select media
 btn_media.form.type.media.remove: Remove selected media
 btn_media.form.type.media.select: Select media
 btn_media.form.type.media.remove: Remove selected media
-btn_media.form.type.media_category.empty_value: Select category
+btn_media.form.type.media_category.placeholder: Select category
 btn_media.form.type.media_category.label: Category
 
 btn_media.media_category_node_content_provider.name: Media category provider
