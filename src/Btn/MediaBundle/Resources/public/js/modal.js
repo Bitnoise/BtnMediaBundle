@@ -26,6 +26,7 @@
         // update media-content html by $.get response
         var updateModalBody = function (url) {
             var modalContent = modal.find('.modal-content');
+            modal.find('[btn-media-submit]').addClass('disabled');
             modal.find('.media-content').slideUp(function () {
                 // start spinner
                 if ($.fn.spin) {
@@ -57,6 +58,7 @@
                 //select image behavior
                 .on('click', '#btn-media-list .item[data-id]', function () {
                     $('#btn-media-list .item[data-id]').removeClass('selected');
+                    modal.find('[btn-media-submit]').removeClass('disabled');
                     $(this).addClass('selected');
                 })
                 //submit choosen image to binded mediaInput
