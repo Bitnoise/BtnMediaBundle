@@ -18,3 +18,5 @@ liip_imagine:
             filters:
                 strip: ~
                 thumbnail: { size: [500, 500], mode: inset }
+        btn_media_original:
+            quality: 100
