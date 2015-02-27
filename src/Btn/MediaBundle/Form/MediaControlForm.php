@@ -70,9 +70,9 @@ class MediaControlForm extends AbstractForm
     /**
      *
      */
-    public function setDefaultOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        parent::setDefaultOptions($resolver);
+        parent::configureOptions($resolver);
 
         $resolver->setDefaults(array(
             'action' => $this->router->generate($this->getActionRouteName(), $this->getActionRouteParams()),
