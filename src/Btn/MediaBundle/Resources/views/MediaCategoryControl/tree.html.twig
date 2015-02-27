@@ -13,6 +13,8 @@
         </li>
     </ul>
 </div>
-<div class="top-offset btn-group btn-group-sm">
-    {{ lnk.add('btn_media_mediacategorycontrol_new', {}, 'btn_media.category.create') }}
-</div>
+{% if not modal %}
+    <div class="top-offset btn-group btn-group-sm">
+        {{ lnk.add('btn_media_mediacategorycontrol_new', {}, 'btn_media.category.create') }}
+    </div>
+{% endif %}
