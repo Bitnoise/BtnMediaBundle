@@ -4,7 +4,7 @@ namespace Btn\MediaBundle\Form\Type;
 
 use Btn\AdminBundle\Form\Type\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Doctrine\ORM\EntityRepository;
 
 class MediaCategoryType extends AbstractType
@@ -20,7 +20,7 @@ class MediaCategoryType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function setDefaultOptions(OptionsResolver $resolver)
     {
         parent::setDefaultOptions($resolver);
 

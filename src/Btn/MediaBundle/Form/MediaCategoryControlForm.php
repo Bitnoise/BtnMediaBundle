@@ -3,7 +3,7 @@
 namespace Btn\MediaBundle\Form;
 
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class MediaCategoryControlForm extends AbstractForm
 {
@@ -27,7 +27,7 @@ class MediaCategoryControlForm extends AbstractForm
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function setDefaultOptions(OptionsResolver $resolver)
     {
         parent::setDefaultOptions($resolver);
 
