@@ -4,7 +4,7 @@ namespace Btn\MediaBundle\Form;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\FormInterface;
 use Btn\MediaBundle\Helper\MimeTypeHelper;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -70,7 +70,7 @@ class MediaControlForm extends AbstractForm
     /**
      *
      */
-    public function setDefaultOptions(OptionsResolver $resolver)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         parent::setDefaultOptions($resolver);
 
