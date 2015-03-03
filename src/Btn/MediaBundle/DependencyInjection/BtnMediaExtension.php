@@ -42,5 +42,15 @@ class BtnMediaExtension extends AbstractExtension
             $loader = $this->getConfigLoader($container);
             $loader->load('liip_imagine');
         }
+
+        // add form resource
+        if ($container->hasExtension('twig')) {
+            $container->prependExtensionConfig('twig', array(
+                'form_themes' => array(
+                    'BtnMediaBundle:Form:fields.html.twig',
+                ),
+            ));
+        }
+
     }
 }

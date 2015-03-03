@@ -1,0 +1,8 @@
+{% block btn_media_widget %}
+    {{ block('choice_widget') }}
+    {% if value and preview|default() and form.vars.data.path|default() %}
+        <div class="btn-youtube-preview">
+            <img src="{{ form.vars.data.path|imagine_filter(preview_filter) }}" alt=""/>
+        </div>
+    {% endif %}
+{% endblock %}
