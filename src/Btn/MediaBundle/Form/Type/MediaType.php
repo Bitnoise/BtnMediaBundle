@@ -41,9 +41,14 @@ class MediaType extends AbstractType
     {
         parent::setDefaultOptions($resolver);
 
+        $resolver->setOptional(array(
+            'preview',
+        ));
+
         $resolver->setDefaults(array(
             'label'         => 'btn_media.form.type.media.label',
             'empty_value'   => 'btn_media.form.type.media.empty_value',
+            'preview'       => false,
             'class'         => $this->class,
             'data_class'    => $this->class,
             'attr'          => array(
@@ -75,6 +80,9 @@ class MediaType extends AbstractType
         if (!empty($options['data_class']) && $view->vars['value'] instanceof MediaInterface) {
             $view->vars['value'] = (string) $view->vars['value']->getId();
         }
+
+        $view->vars['preview'] = $options['preview'] ? true : false;
+        $view->vars['preview_filter'] = is_string($options['preview']) ? $options['preview'] : 'btn_media_thumb';
     }
 
     /**
