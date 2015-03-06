@@ -66,6 +66,7 @@
                     var media = $('#btn-media-list .item.selected');
                     if (media.length) {
                         updateMediaInput(mediaInput, media);
+                        refreshPreview();
                         modal.modal('hide');
                     }
                 })
@@ -164,6 +165,13 @@
             }
         };
 
+        var refreshPreview = function() {
+            var preview = $('[btn-preview-for="'+mediaInput.attr('id')+'"]');
+            if (preview.length) {
+                preview.hide();
+            }
+        };
+
         // main init function
         var init = function() {
             var self      = mediaInput.hide(),
@@ -185,6 +193,7 @@
 
             deleteBtn.on('click btnRemove', function () {
                 updateMediaInput(self);
+                refreshPreview();
                 $(this).hide();
 
                 return false;
