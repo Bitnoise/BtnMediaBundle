@@ -76,7 +76,7 @@ class MediaType extends AbstractType
     {
         parent::buildView($view, $form, $options);
 
-        // correct value from data transformer for choice to select coreclty
+        // correct value from data transformer for choice to select correctly
         if (!empty($options['data_class']) && $view->vars['value'] instanceof MediaInterface) {
             $view->vars['value'] = (string) $view->vars['value']->getId();
         }
