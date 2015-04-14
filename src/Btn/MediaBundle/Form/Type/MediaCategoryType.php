@@ -44,7 +44,7 @@ class MediaCategoryType extends AbstractType
      */
     public function getParent()
     {
-        return 'entity';
+        return 'btn_select2_entity';
     }
 
     /**
