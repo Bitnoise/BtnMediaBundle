@@ -27,7 +27,6 @@ btn_media.form.type.media.label: Media
 btn_media.form.type.media.placeholder: Select media
 btn_media.form.type.media.remove: Remove selected media
 btn_media.form.type.media.select: Select media
-btn_media.form.type.media.remove: Remove selected media
 btn_media.form.type.media_category.placeholder: Select category
 btn_media.form.type.media_category.label: Category
 
