@@ -1,0 +1,34 @@
+btn_media.type.file.empty_value: Wybierz
+btn_media.type.file.label: Media
+btn_media.category.create: Utwórz kategorię
+btn_media.category.label: Kategoria
+btn_media.category.edit: Edytuj kategorię
+btn_media.category.delete: Usuń kategorię
+btn_media.category.name: Nazwa
+btn_media.name.label: Nazwa
+btn_media.description.label: Opis
+btn_media.media.add: Dodaj nowy
+btn_media.media.choose: Wybierz
+btn_media.media.choose_submit: Prześlij wybrane
+btn_media.media.all: Wszystkie
+btn_media.media.edit: Edytuj
+btn_media.media.delete: Usuń
+btn_media.media.delete_confirm: Czy chcesz usunąć?
+btn_media.media.remove: Wyczyść
+btn_media.media.list: Lista
+
+btn_media.mediacategorycontrol_new: Nowa kategoria
+btn_media.mediacategorycontrol_create: Utwórz kategorię
+btn_media.mediacategorycontrol_edit: Edytuj kategorię
+btn_media.mediacategorycontrol_update: Zaktualizuj kategorię
+
+# Form type
+btn_media.form.type.media.label: Media
+btn_media.form.type.media.empty_value: Wybierz
+btn_media.form.type.media.remove: Wyczyść
+btn_media.form.type.media.select: Wybierz
+btn_media.form.type.media_category.empty_value: Wybierz kategorię
+btn_media.form.type.media_category.label: Kategoria
+
+btn_media.media_category_node_content_provider.name: Kategoria mediów
+btn_media.menu_navbar.media_item.label: Media
