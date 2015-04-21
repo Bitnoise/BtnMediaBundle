@@ -191,10 +191,11 @@ class MediaUploader
         $media = $this->adapter->getFormData();
         if ($file) {
             $extension = $file->guessExtension();
+            $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
             $filename  = $basename = preg_replace(
                 array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'),
                 array('_', '.', ''),
-                pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)
+                $originalName
             );
 
             if (false == $this->getReplaceOldFiles()) {
@@ -213,7 +214,8 @@ class MediaUploader
 
             $filename .= '.'.$extension;
 
-            $media->setName($media->getName() ? $media->getName() : $filename);
+            $media->setOriginalName($originalName);
+            $media->setName($media->getName() ? $media->getName() : $originalName);
             $media->setFile($filename);
             $media->setType($file->getMimeType());
 
