@@ -23,8 +23,14 @@ abstract class AbstractMedia extends AbstractFile implements MediaInterface
     /**
      * @var string
      *
+     * @ORM\Column(name="original_name", type="string", length=255)
+     */
+    protected $originalName;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="name", type="string", length=255)
-     * @Assert\NotBlank()
      */
     protected $name;
 
@@ -77,6 +83,29 @@ abstract class AbstractMedia extends AbstractFile implements MediaInterface
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set originalName
+     *
+     * @param  string $originalName
+     * @return Media
+     */
+    public function setOriginalName($originalName)
+    {
+        $this->originalName = $originalName;
+
+        return $this;
+    }
+
+    /**
+     * Get originalName
+     *
+     * @return string
+     */
+    public function getOriginalName()
+    {
+        return $this->originalName;
     }
 
     /**

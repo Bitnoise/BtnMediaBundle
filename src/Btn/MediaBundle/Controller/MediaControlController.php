@@ -94,7 +94,9 @@ class MediaControlController extends AbstractControlController
             $uploader->setAdapter($adapter);
             $uploader->handleUpload();
 
-            $ep->save($entity);
+            foreach ($uploader->getUploadedMedias() as $media) {
+                $ep->save($media);
+            }
 
             if ($request->isXmlHttpRequest()) {
                 return $this->json(array(
