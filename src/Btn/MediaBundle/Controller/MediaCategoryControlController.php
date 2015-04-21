@@ -18,6 +18,14 @@ use Btn\AdminBundle\Annotation\Crud;
 class MediaCategoryControlController extends CrudController
 {
     /**
+     * @Route("/", methods={"GET", "POST"})
+     */
+    public function indexAction(Request $request)
+    {
+        return $this->redirect($this->generateUrl('btn_media_mediacontrol_media_index'));
+    }
+
+    /**
      * Lists all Nodes.
      *
      * @Template()
