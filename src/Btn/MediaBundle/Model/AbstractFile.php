@@ -46,4 +46,22 @@ abstract class AbstractFile
 
         return $this->$method($path);
     }
+
+    /**
+     *
+     */
+    public function getFileExt()
+    {
+        $file = $this->getFile();
+
+        return $file ? strtolower(substr($file, strrpos($file, '.') + 1)) : $file;
+    }
+
+    /**
+     *
+     */
+    public function getExt()
+    {
+        return $this->getFileExt();
+    }
 }
