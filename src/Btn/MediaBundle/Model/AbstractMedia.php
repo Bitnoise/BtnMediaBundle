@@ -69,6 +69,7 @@ abstract class AbstractMedia extends AbstractFile implements MediaInterface
     protected $size;
 
     /**
+     * @var array
      */
     protected $thumbExtensions = array('jpeg', 'jpg', 'png', 'gif');
 
