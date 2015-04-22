@@ -157,16 +157,6 @@ abstract class AbstractMedia extends AbstractFile implements MediaInterface
     /**
      *
      */
-    public function getFileExt()
-    {
-        $file = $this->getFile();
-
-        return $file ? strtolower(substr($file, strrpos($file, '.') + 1)) : $file;
-    }
-
-    /**
-     *
-     */
     public function isThumbable()
     {
         $extension = $this->getFileExt();
