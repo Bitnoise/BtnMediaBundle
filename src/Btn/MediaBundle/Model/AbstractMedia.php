@@ -23,7 +23,7 @@ abstract class AbstractMedia extends AbstractFile implements MediaInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="original_name", type="string", length=255)
+     * @ORM\Column(name="original_name", type="string", length=255, nullable=true)
      */
     protected $originalName;
 
