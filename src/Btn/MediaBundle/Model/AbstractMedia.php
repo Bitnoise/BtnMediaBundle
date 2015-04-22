@@ -62,7 +62,13 @@ abstract class AbstractMedia extends AbstractFile implements MediaInterface
     protected $file;
 
     /**
+     * @var integer
      *
+     * @ORM\Column(name="size", type="integer", nullable=true)
+     */
+    protected $size;
+
+    /**
      */
     protected $thumbExtensions = array('jpeg', 'jpg', 'png', 'gif');
 
@@ -152,6 +158,26 @@ abstract class AbstractMedia extends AbstractFile implements MediaInterface
     public function getFile()
     {
         return $this->file;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    /**
+     * @param int $size
+     *
+     * @return $this
+     */
+    public function setSize($size = null)
+    {
+        $this->size = $size;
+
+        return $this;
     }
 
     /**

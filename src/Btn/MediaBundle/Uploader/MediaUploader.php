@@ -228,6 +228,7 @@ class MediaUploader
             $media->setName($media->getName() ? $media->getName() : $originalName);
             $media->setFile($filename);
             $media->setType($file->getMimeType());
+            $media->setSize($file->getClientSize());
 
             if ($this->filesystem) {
                 $gaufrette = $this->filesystem->get($filename, true);
