@@ -16,7 +16,7 @@
     ],
     "require": {
         "bitnoise/admin-bundle": "2.1.*",
-        "liip/imagine-bundle": "dev-sf26fix",
+        "liip/imagine-bundle": "~1.3.0",
         "knplabs/knp-gaufrette-bundle" : "~0.1.0"
     },
     "require-dev": {
@@ -27,10 +27,6 @@
         "asm89/twig-lint": "~1.0.1"
     },
     "repositories": [
-        {
-            "type": "composer",
-            "url": "http://adam187.github.io/packages/"
-        },
         {
             "type": "composer",
             "url": "http://bitnoise.github.io/packages/"
