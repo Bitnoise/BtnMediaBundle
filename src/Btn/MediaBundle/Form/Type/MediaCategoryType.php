@@ -34,7 +34,7 @@ class MediaCategoryType extends AbstractType
                     ->orderBy('mc.name', 'ASC')
                 ;
             },
-            'property' => 'name',
+            'choice_label' => 'name',
             'expanded' => false,
         ));
     }

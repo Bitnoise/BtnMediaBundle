@@ -63,7 +63,7 @@ class MediaType extends AbstractType
                     ->orderBy('mf.name', 'ASC')
                 ;
             },
-            'property' => 'name',
+            'choice_label' => 'name',
             'required' => true,
             'expanded' => false,
         ));
