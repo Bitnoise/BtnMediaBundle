@@ -1,6 +1,7 @@
 /* global jQuery */
 (function($, undefined){
     'use strict';
+
     //get base url for $.get content
     var baseUrl  = $('#btn-media-list').attr('data-pagination-url'),
         btnMedia = $('.btn-media-modal');
@@ -40,18 +41,19 @@
             return false;
         })
         //mark selected image
-        .on('click', '#btn-media-list .item img', function () {
-            $('#btn-media-list .item img').removeClass('selected');
+        .on('click', '#btn-media-list .item[data-id]', function () {
+            $('#btn-media-list .item[data-id]').removeClass('selected');
             $(this).addClass('selected');
+            $('[btn-media-submit]').removeClass('disabled');
         })
         //submit choosen button to CKEDITOR
         .on('click', '[btn-media-submit]', function () {
-            var images = $('#btn-media-list .item img.selected');
-            if (images.length) {
+            var media = $('#btn-media-list .item[data-id].selected');
+            if (media.length) {
                 //PATCH: Using CKEditors API we set the file in preview window.
                 var funcNum = getUrlParam('CKEditorFuncNum');
                 //images are not displayed in preview window when filename contain spaces due encodeURI encoding already encoded fileUrl
-                window.top.opener.CKEDITOR.tools.callFunction(funcNum, images.attr('data-original'));
+                window.top.opener.CKEDITOR.tools.callFunction(funcNum, media.attr('data-original'));
                 window.top.close();
                 window.top.opener.focus();
             }
