@@ -94,8 +94,12 @@ class MediaControlController extends AbstractControlController
             $uploader->setAdapter($adapter);
             $uploader->handleUpload();
 
-            foreach ($uploader->getUploadedMedias() as $media) {
-                $ep->save($media);
+            if (count($uploader->getUploadedMedias()) > 0) {
+                foreach ($uploader->getUploadedMedias() as $media) {
+                    $ep->save($media);
+                }
+            } else {
+                $ep->save($entity);
             }
 
             if ($request->isXmlHttpRequest()) {
@@ -104,9 +108,11 @@ class MediaControlController extends AbstractControlController
                 ));
             } else {
                 $medias = $uploader->getUploadedMedias();
-                if (count($medias) > 0) {
-                    $id = $id ? $id : array_pop($medias)->getId();
+                if (count($medias) > 0 && !$id) {
+                    $id = array_pop($medias)->getId();
+                }
 
+                if ($id) {
                     return $this->redirect($this->generateUrl(
                         'btn_media_mediacontrol_media_edit',
                         array('id' => $id)
