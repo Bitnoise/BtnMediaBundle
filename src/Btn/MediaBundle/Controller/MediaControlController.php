@@ -190,8 +190,18 @@ class MediaControlController extends AbstractControlController
     {
         $category      = $request->get('category');
         $mediaProvider = $this->getEntityProvider();
-        $method        = $category ? 'findByCategory' : 'findAll';
-        $entities      = $mediaProvider->getRepository()->$method($category);
+        $repository    = $mediaProvider->getRepository();
+
+        if ($category) {
+            $customMethod = 'findByCategoryForCrudIndex';
+            $defaultMehod = 'findByCategory';
+        } else {
+            $customMethod = 'findAllForCrudIndex';
+            $defaultMehod = 'findAll';
+        }
+
+        $method        = method_exists($repository, $customMethod) ? $customMethod : $defaultMehod;
+        $entities      = $repository->$method($category);
         $filterOrginal = $this->get('service_container')->getParameter('btn_media.media.imagine.filter_orginal');
 
         /* @todo: number of mediafiles per page - to bundle config */
