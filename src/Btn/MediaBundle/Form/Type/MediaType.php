@@ -52,10 +52,11 @@ class MediaType extends AbstractType
             'class'         => $this->class,
             'data_class'    => $this->class,
             'attr'          => array(
-                'btn-media'        => $this->router->generate($this->getModalRouteName()),
-                'btn-media-select' => $this->trans('btn_media.form.type.media.select'),
-                'btn-media-delete' => $this->trans('btn_media.form.type.media.remove'),
-
+                'btn-media'          => $this->router->generate($this->getModalRouteName()),
+                'btn-media-select'   => $this->trans('btn_media.form.type.media.select'),
+                'btn-media-edit'     => $this->trans('btn_media.form.type.media.edit'),
+                'btn-media-edit-url' => $this->router->generate('btn_media_mediacontrol_media_edit', array('id' => 0)),
+                'btn-media-delete'   => $this->trans('btn_media.form.type.media.remove'),
                 ),
             'query_builder' => function (EntityRepository $em) {
                 return $em
