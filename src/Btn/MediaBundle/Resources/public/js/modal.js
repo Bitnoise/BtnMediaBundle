@@ -13,6 +13,7 @@
             modalUrl           = mediaInput.attr('btn-media'),
             selectMediaBtnText = mediaInput.attr('btn-media-select'),
             selectMediaBtn     = $('<div />').addClass('btn btn-primary').text(selectMediaBtnText),
+            editMediaBtn       = $('<a target="_blank" />').addClass('btn btn-info').text(mediaInput.attr('btn-media-edit')),
             deleteMediaBtn     = $('<div />').addClass('btn btn-danger').attr('btn-remove', true).text(mediaInput.attr('btn-media-delete')),
             paginationUrl      = '',
             laddaButton        = null;
@@ -144,6 +145,7 @@
 
         var updateMediaButtons = function (input, filename) {
             var selectBtn  = input.data('select-button'),
+                editBtn    = input.data('edit-button'),
                 deleteBtn  = input.data('delete-button'),
                 selectBtnText;
 
@@ -158,9 +160,13 @@
             }
 
             selectBtn.text(selectBtnText || selectMediaBtnText);
+            editBtn.attr('href', '#');
+
             if (input.val()) {
+                editBtn.show();
                 deleteBtn.show();
             } else {
+                editBtn.hide();
                 deleteBtn.hide();
             }
         };
@@ -176,9 +182,11 @@
         var init = function() {
             var self      = mediaInput.hide(),
                 selectBtn = selectMediaBtn.clone().insertAfter(self),
-                deleteBtn = deleteMediaBtn.clone().hide().insertAfter(selectBtn);
+                editBtn   = editMediaBtn.clone().hide().insertAfter(selectBtn),
+                deleteBtn = deleteMediaBtn.clone().hide().insertAfter(editBtn);
 
             self.data('select-button', selectBtn);
+            self.data('edit-button', editBtn);
             self.data('delete-button', deleteBtn);
 
             selectBtn.on('click', function () {
@@ -189,6 +197,13 @@
                 openModal();
 
                 return false;
+            });
+
+            editBtn.on('click', function() {
+                editBtn.attr('href', self.attr('btn-media-edit-url').replace('/0', '/' + self.val()));
+                window.setTimeout(function() {
+                    editBtn.attr('href', '#');
+                });
             });
 
             deleteBtn.on('click btnRemove', function () {

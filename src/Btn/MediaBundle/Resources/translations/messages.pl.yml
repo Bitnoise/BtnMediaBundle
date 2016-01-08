@@ -27,6 +27,7 @@ btn_media.form.type.media.label: Media
 btn_media.form.type.media.placeholder: Wybierz
 btn_media.form.type.media.remove: Wyczyść
 btn_media.form.type.media.select: Wybierz
+btn_media.form.type.media.edit: Edytuj
 btn_media.form.type.media_category.placeholder: Wybierz kategorię
 btn_media.form.type.media_category.label: Kategoria
 
