@@ -202,14 +202,14 @@ class MediaControlController extends AbstractControlController
 
         $method        = method_exists($repository, $customMethod) ? $customMethod : $defaultMehod;
         $entities      = $repository->$method($category);
-        $filterOrginal = $this->get('service_container')->getParameter('btn_media.media.imagine.filter_orginal');
+        $filterOriginal = $this->get('service_container')->getParameter('btn_media.media.imagine.filter_original');
 
         /* @todo: number of mediafiles per page - to bundle config */
         $pagination = $this->paginate($entities, null, $perPage);
 
         return array(
             'pagination'     => $pagination,
-            'filter_orginal' => $filterOrginal,
+            'filter_original' => $filterOriginal,
         );
     }
 }
