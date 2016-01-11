@@ -2,7 +2,15 @@
 
 {% block modalContent %}
 
-    <div id="btn-media-list" class="btn-media-list" class="col-md-12" data-pagination-url="{{ url('btn_media_mediacontrol_modalcontent') }}">
+    {% if filter_form is defined and filter_form %}
+        <div class="pull-right">{{ form(filter_form) }}</div>
+    {% endif %}
+
+    <div
+        id="btn-media-list"
+        class="btn-media-list col-md-12 top-offset"
+        data-pagination-url="{{ url('btn_media_mediacontrol_modalcontent') }}"
+    >
         {% for entity in pagination %}
             <div class="col-md-12">
                 <div class="col-md-6">
