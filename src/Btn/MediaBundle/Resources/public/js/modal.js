@@ -84,6 +84,13 @@
                     updateModalBody(category ? (paginationUrl + '/' + category) : paginationUrl);
 
                     return false;
+                })
+                // filter form
+                .on('submit', 'form[name="filter"]', function(event) {
+                    event.preventDefault();
+                    var searchUrl = paginationUrl;
+                    searchUrl += (searchUrl.indexOf('?') > 0) ? '&' : '?';
+                    updateModalBody(searchUrl + $(this).serialize());
                 });
 
                 if (BtnApp) {
