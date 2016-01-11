@@ -1,0 +1,11 @@
+parameters:
+    btn_media.filter.media.class: Btn\MediaBundle\Filter\MediaFilter
+
+services:
+    btn_media.filter.media:
+        class: %btn_media.filter.media.class%
+        parent: btn_base.filter.abstract_request_filter
+        scope: request
+        calls:
+            - [setType, [@btn_media.form.filter.media]]
+            - [setEntityProvider, [@btn_media.provider.media]]

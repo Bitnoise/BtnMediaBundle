@@ -14,6 +14,9 @@ class BtnMediaExtension extends AbstractExtension
     {
         parent::load($configs, $container);
 
+        $loader = $this->getConfigLoader($container);
+        $loader->tryLoadFromArray(array('filters'));
+
         $config = $this->getProcessedConfig($container, $configs);
 
         $container->setParameter('btn_media.media.class', $config['media']['class']);

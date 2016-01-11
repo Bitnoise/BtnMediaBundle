@@ -6,6 +6,7 @@ parameters:
     btn_media.form.type.media_category.class: Btn\MediaBundle\Form\Type\MediaCategoryType
     btn_media.form.type.media_embedded.class: Btn\MediaBundle\Form\Type\MediaEmbeddedType
     btn_media.form.type.file.class: Btn\MediaBundle\Form\Type\FileType
+    btn_media.form.filter.media.class: Btn\MediaBundle\Form\Filter\MediaFilterForm
 
 services:
     #base Media form
@@ -58,3 +59,7 @@ services:
         class: %btn_media.form.type.file.class%
         tags:
             - { name: form.type, alias: btn_media_type_file }
+
+    btn_media.form.filter.media:
+        public: false
+        class: %btn_media.form.filter.media.class%
