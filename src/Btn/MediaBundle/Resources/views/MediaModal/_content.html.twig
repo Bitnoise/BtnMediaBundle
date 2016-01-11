@@ -13,7 +13,7 @@
                     title="{{ entity.name }}"
                     data-id="{{ entity.id }}"
                     data-filename="{{ entity.name }}"
-                    data-original="{{ entity.path|imagine_filter(filter_orginal) }}"
+                    data-original="{{ entity.path|imagine_filter(filter_original) }}"
                 >
                     {% if entity.isThumbable %}
                         <img src="{{ entity.path|imagine_filter('btn_media_thumb') }}" class="img-polaroid"/>

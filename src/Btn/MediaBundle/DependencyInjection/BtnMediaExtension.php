@@ -14,6 +14,9 @@ class BtnMediaExtension extends AbstractExtension
     {
         parent::load($configs, $container);
 
+        $loader = $this->getConfigLoader($container);
+        $loader->tryLoadFromArray(array('filters'));
+
         $config = $this->getProcessedConfig($container, $configs);
 
         $container->setParameter('btn_media.media.class', $config['media']['class']);
@@ -22,8 +25,8 @@ class BtnMediaExtension extends AbstractExtension
         $container->setParameter('btn_media.media.auto_extract', $config['media']['auto_extract']);
         $container->setParameter('btn_media.media_category.class', $config['media_category']['class']);
         $container->setParameter(
-            'btn_media.media.imagine.filter_orginal',
-            $config['media']['imagine']['filter_orginal']
+            'btn_media.media.imagine.filter_original',
+            $config['media']['imagine']['filter_original']
         );
         $container->setParameter(
             'btn_media.node_content_provider.media_category',

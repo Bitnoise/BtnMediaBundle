@@ -32,7 +32,7 @@ class Configuration implements ConfigurationInterface
                         ->arrayNode('imagine')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('filter_orginal')->defaultValue('btn_media_original')->end()
+                                ->scalarNode('filter_original')->defaultValue('btn_media_original')->end()
                             ->end()
                         ->end()
                     ->end()

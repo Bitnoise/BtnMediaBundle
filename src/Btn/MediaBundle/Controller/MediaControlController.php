@@ -188,28 +188,39 @@ class MediaControlController extends AbstractControlController
      */
     private function getListData(Request $request, $perPage = 6)
     {
-        $category      = $request->get('category');
-        $mediaProvider = $this->getEntityProvider();
-        $repository    = $mediaProvider->getRepository();
+        $category = $request->get('category');
+        $filter = $this->get('btn_media.filter.media');
 
-        if ($category) {
-            $customMethod = 'findByCategoryForCrudIndex';
-            $defaultMehod = 'findByCategory';
+        $filterForm = $filter->createForm(array(
+            'category' => $request->attributes->get('category')
+        ), array(
+            'action' => $this->generateUrl('btn_media_mediacontrol_media_index'),
+        ));
+
+        if ($filter->applyFilters()) {
+            $entities = $filter->getQuery();
         } else {
-            $customMethod = 'findAllForCrudIndex';
-            $defaultMehod = 'findAll';
+            $repository = $this->getEntityProvider()->getRepository();
+            if ($category) {
+                $customMethod = 'findByCategoryForCrudIndex';
+                $defaultMethod = 'findByCategory';
+            } else {
+                $customMethod = 'findAllForCrudIndex';
+                $defaultMethod = 'findAll';
+            }
+            $method = method_exists($repository, $customMethod) ? $customMethod : $defaultMethod;
+            $entities = $repository->$method($category);
         }
 
-        $method        = method_exists($repository, $customMethod) ? $customMethod : $defaultMehod;
-        $entities      = $repository->$method($category);
-        $filterOrginal = $this->get('service_container')->getParameter('btn_media.media.imagine.filter_orginal');
+        $filterOriginal = $this->get('service_container')->getParameter('btn_media.media.imagine.filter_original');
 
         /* @todo: number of mediafiles per page - to bundle config */
         $pagination = $this->paginate($entities, null, $perPage);
 
         return array(
-            'pagination'     => $pagination,
-            'filter_orginal' => $filterOrginal,
+            'pagination' => $pagination,
+            'filter_form' => $filterForm ? $filterForm->createView() : null,
+            'filter_original' => $filterOriginal,
         );
     }
 }
