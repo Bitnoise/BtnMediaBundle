@@ -29,7 +29,7 @@
     "repositories": [
         {
             "type": "composer",
-            "url": "http://bitnoise.github.io/packages/"
+            "url": "https://bitnoise.github.io/packages/"
         }
     ],
     "autoload": {
