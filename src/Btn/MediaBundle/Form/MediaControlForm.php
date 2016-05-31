@@ -61,6 +61,9 @@ class MediaControlForm extends AbstractForm
             ->add('name', null, array(
                 'label' => 'btn_media.name.label',
             ))
+            ->add('alt', null, array(
+                'label' => 'btn_media.alt.label',
+            ))
             ->add('description', 'textarea', array(
                 'label' => 'btn_media.description.label',
             ))

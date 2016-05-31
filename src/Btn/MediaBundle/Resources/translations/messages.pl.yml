@@ -6,6 +6,7 @@ btn_media.category.edit: Edytuj kategorię
 btn_media.category.delete: Usuń kategorię
 btn_media.category.name: Nazwa
 btn_media.name.label: Nazwa
+btn_media.alt.label: Alt
 btn_media.description.label: Opis
 btn_media.media.add: Dodaj nowy
 btn_media.media.choose: Wybierz

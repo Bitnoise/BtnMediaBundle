@@ -37,6 +37,13 @@ abstract class AbstractMedia extends AbstractFile implements MediaInterface
     /**
      * @var string
      *
+     * @ORM\Column(name="alt", type="string", length=255, nullable=true)
+     */
+    protected $alt;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="description", type="string", length=255, nullable=true)
      */
     protected $description;
@@ -136,6 +143,22 @@ abstract class AbstractMedia extends AbstractFile implements MediaInterface
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAlt()
+    {
+        return $this->alt;
+    }
+
+    /**
+     * @param string $alt
+     */
+    public function setAlt($alt)
+    {
+        $this->alt = $alt;
     }
 
     /**
