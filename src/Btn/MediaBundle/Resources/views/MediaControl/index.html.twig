@@ -38,9 +38,9 @@
                 <td>{{ entity.name }}</td>
                 <td>
                     {% if entity.isThumbable %}
-                        <img src="{{ entity.path|imagine_filter('btn_media_thumb') }}" />
+                        <img src="{{ entity.path|imagine_filter('btn_media_thumb') }}" alt="" />
                     {% elseif entity.isIconable %}
-                        <img src="{{ entity.iconPath|imagine_filter('btn_media_icon') }}" />
+                        <img src="{{ entity.iconPath|imagine_filter('btn_media_icon') }}" alt="" />
                     {% else %}
                         {{ gi('ban-circle') }}
                     {% endif %}
