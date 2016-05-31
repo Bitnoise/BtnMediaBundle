@@ -1,7 +1,9 @@
 {% macro img(image, attr = {}, imagine_filter) %}
 {% spaceless %}
-    {% if image.path|default('') %}
-        {% if not attr.alt|default('') and image.description|default('') %}
+    {% if image and image.path|default('') %}
+        {% if not attr.alt|default('') and image.alt|default('') %}
+            {% set attr = attr|merge({alt: image.alt}) %}
+        {% elseif not attr.alt|default('') and image.description|default('') %}
             {% set attr = attr|merge({alt: image.description}) %}
         {% endif %}
         <img src="{{ image.path|imagine_filter(imagine_filter) }}"
@@ -18,6 +20,14 @@
                 {% endfor %}
             {% endif %}
         />
+    {% endif %}
+{% endspaceless %}
+{% endmacro %}
+
+{% macro alt(image) %}
+{% spaceless %}
+    {% if image.alt|default() %}
+        {{ image.alt }}
     {% endif %}
 {% endspaceless %}
 {% endmacro %}
