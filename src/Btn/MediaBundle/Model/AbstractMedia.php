@@ -364,6 +364,23 @@ abstract class AbstractMedia extends AbstractFile implements MediaInterface
     }
 
     /**
+     * @return string
+     */
+    public function getChoiceLabel() {
+        $choiceLabel = '';
+        $name = $this->getName();
+        $alt = $this->getAlt();
+
+        $choiceLabel .= $name;
+
+        if ($alt !== $name) {
+            $choiceLabel .= ' (' .  $alt . ')';
+        }
+
+        return $choiceLabel;
+    }
+
+    /**
      *
      */
     public function __toString()

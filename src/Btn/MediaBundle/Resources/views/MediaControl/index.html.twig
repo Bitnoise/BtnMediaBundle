@@ -27,6 +27,7 @@
             <tr>
                 <th class="btn-admin-column-id">Id</th>
                 <th>{% trans %}btn_admin.name{% endtrans %}</th>
+                <th>{% trans %}btn_media.alt.label{% endtrans %}</th>
                 <th>{% trans %}btn_admin.preview{% endtrans %}</th>
                 <th>{% trans %}btn_admin.actions{% endtrans %}</th>
             </tr>
@@ -36,6 +37,7 @@
             <tr>
                 <td class="btn-admin-column-id">{{ entity.id }}</td>
                 <td>{{ entity.name }}</td>
+                <td>{{ entity.alt }}</td>
                 <td>
                     {% if entity.isThumbable %}
                         <img src="{{ entity.path|imagine_filter('btn_media_thumb') }}" alt="" />
