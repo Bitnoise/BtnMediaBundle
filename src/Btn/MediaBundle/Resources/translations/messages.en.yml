@@ -5,6 +5,8 @@ btn_media.category.label: Category
 btn_media.category.edit: Edit category
 btn_media.category.delete: Delete category
 btn_media.category.name: Name
+btn_media.keyword: Keyword
+btn_media.type_here: Type here
 btn_media.name.label: Name
 btn_media.alt.label: Alt
 btn_media.description.label: Description

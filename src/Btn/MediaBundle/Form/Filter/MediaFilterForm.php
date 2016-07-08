@@ -15,10 +15,10 @@ class MediaFilterForm extends AbstractFilterForm
 
         $builder
             ->add('keyword', 'text', array(
-                'label' => 'bostons_control.keyword',
+                'label' => 'btn_media.keyword',
                 'required' => false,
                 'attr' => array(
-                    'placeholder' => 'bostons_control.type_here',
+                    'placeholder' => 'btn_media.type_here',
                 ),
             ))
             ->add('category', 'btn_media_category', array(

@@ -2,6 +2,7 @@
 
 namespace Btn\MediaBundle\DependencyInjection;
 
+use Symfony\Component\HttpKernel\Kernel;
 use Btn\BaseBundle\DependencyInjection\AbstractExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
@@ -48,11 +49,19 @@ class BtnMediaExtension extends AbstractExtension
 
         // add form resource
         if ($container->hasExtension('twig')) {
-            $container->prependExtensionConfig('twig', array(
-                'form_themes' => array(
-                    'BtnMediaBundle:Form:fields.html.twig',
-                ),
-            ));
+            if (Kernel::VERSION_ID < 20700) {
+                $container->prependExtensionConfig('twig', array(
+                    'form' => array(
+                        'resources' => array('BtnMediaBundle:Form:fields.html.twig')
+                    ),
+                ));
+            } else {
+                $container->prependExtensionConfig('twig', array(
+                    'form_themes' => array(
+                        'BtnMediaBundle:Form:fields.html.twig',
+                    ),
+                ));
+            }
         }
 
     }
