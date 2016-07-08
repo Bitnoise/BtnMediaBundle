@@ -5,6 +5,8 @@ btn_media.category.label: Kategoria
 btn_media.category.edit: Edytuj kategorię
 btn_media.category.delete: Usuń kategorię
 btn_media.category.name: Nazwa
+btn_media.keyword: Szukaj słowo
+btn_media.type_here: Wpisz tutaj
 btn_media.name.label: Nazwa
 btn_media.alt.label: Alt
 btn_media.description.label: Opis
