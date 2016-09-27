@@ -64,4 +64,19 @@ abstract class AbstractFile
     {
         return $this->getFileExt();
     }
+
+    /**
+     *
+     */
+    public function getBaseFileName()
+    {
+        $path = $this->getPath();
+        if ($path) {
+            $pathParts = pathinfo($path);
+
+            return $pathParts['filename'];
+        }
+
+        return;
+    }
 }
