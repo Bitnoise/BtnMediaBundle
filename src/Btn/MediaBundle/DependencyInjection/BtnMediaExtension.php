@@ -23,6 +23,7 @@ class BtnMediaExtension extends AbstractExtension
         $container->setParameter('btn_media.media.class', $config['media']['class']);
         $container->setParameter('btn_media.media.allowed_extensions', $config['media']['allowed_extensions']);
         $container->setParameter('btn_media.media.max_size', $config['media']['max_size']);
+        $container->setParameter('btn_media.media.base_url', $config['media']['base_url']);
         $container->setParameter('btn_media.media.auto_extract', $config['media']['auto_extract']);
         $container->setParameter('btn_media.media_category.class', $config['media_category']['class']);
         $container->setParameter(
@@ -33,6 +34,7 @@ class BtnMediaExtension extends AbstractExtension
             'btn_media.node_content_provider.media_category',
             $config['node_content_provider']['media_category']
         );
+        $container->setParameter('btn_media.media_video_filter.class', $config['media_video_filter']['class']);
     }
 
     /**

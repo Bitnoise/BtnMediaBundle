@@ -2,7 +2,16 @@
     {{ block('choice_widget') }}
     {% if value and preview|default() and form.vars.data.path|default() %}
         <div class="btn-preview btn-preview-media" btn-preview-for="{{ id }}">
-            <img src="{{ form.vars.data.path|imagine_filter(preview_filter) }}" alt=""/>
+            {% if form.vars.data.isVideo %}
+                {% set videoSrc = form.vars.data|btn_get_media_url(preview_filter) %}
+                {% if videoSrc %}
+                    <video src="{{ videoSrc }}" controls></video>
+                {% else %}
+                    {% trans %}btn_media.video_is_processing{% endtrans %}
+                {% endif %}
+            {% else %}
+                <img src="{{ form.vars.data.path|imagine_filter(preview_filter) }}" alt=""/>
+            {% endif %}
         </div>
     {% endif %}
 {% endblock %}

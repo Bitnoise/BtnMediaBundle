@@ -3,6 +3,13 @@ parameters:
     btn_media.uploader.media.class: Btn\MediaBundle\Uploader\MediaUploader
     btn_media.adapter.default.class: Btn\MediaBundle\Adapter\DefaultAdapter
     btn_media.extension.media.class: Btn\MediaBundle\Twig\MediaExtension
+    btn_media.extension.media_url.class: Btn\MediaBundle\Twig\MediaUrlExtension
+    btn_media.url.resolver.class:  Btn\MediaBundle\Url\UrlResolver
+    btn_media.video.filter_manager.class: Btn\MediaBundle\Video\VideoFilterManager
+    btn_media.video.encoder.class: Btn\MediaBundle\Video\VideoEncoder
+    btn_media.video.filter_resolver.class: Btn\MediaBundle\Video\VideoFilterResolver
+    btn_media.video.abstract_video_filter.class: Btn\MediaBundle\Video\AbstractVideoFilter
+    btn_media.video.default_filter.class: Btn\MediaBundle\Video\DefaultVideoFilter
 
 services:
     btn_media.provider.media:
@@ -14,6 +21,12 @@ services:
         class: %btn_base.provider.entity.class%
         parent: btn_base.provider.abstract_entity
         arguments: [%btn_media.media_category.class%]
+
+    btn_media.provider.media_video_filter:
+        class: %btn_base.provider.entity.class%
+        parent: btn_base.provider.abstract_entity
+        arguments: [%btn_media.media_video_filter.class%]
+
 
     btn_media.liip_imagine.binary.loader.stream.btn_media:
         class: %liip_imagine.binary.loader.stream.class%
@@ -42,6 +55,14 @@ services:
         tags:
             - { name: twig.extension }
 
+    btn_media.extension.media_url:
+        class: %btn_media.extension.media_url.class%
+        arguments:
+          - @btn_media.url.resolver
+        tags:
+            - { name: twig.extension }
+
+
     btn_media.uploader.media:
         class: %btn_media.uploader.media.class%
         arguments: [%kernel.cache_dir%, %btn_media.media.auto_extract%]
@@ -60,3 +81,38 @@ services:
             formName:              @btn_media.form.media
 
     btn_media.adapter: @btn_media.adapter.default
+
+    btn_media.url.resolver:
+        class: %btn_media.url.resolver.class%
+        arguments:
+            - %btn_media.media.base_url%
+            - @btn_media.video.filter_resolver
+
+    btn_media.video.filter_manager:
+        class: %btn_media.video.filter_manager.class%
+
+    btn_media.video.encoder:
+        class: %btn_media.video.encoder.class%
+        arguments:
+            - @dubture_ffmpeg.ffmpeg
+            - @btn_media.video.filter_manager
+            - @logger
+
+    btn_media.video.filter_resolver:
+        class: %btn_media.video.filter_resolver.class%
+        arguments:
+            - @btn_media.provider.media_video_filter
+            - @btn_media.video.filter_manager
+
+    btn_media.video.abstract_video_filter:
+        class: %btn_media.video.abstract_video_filter.class%
+        abstract: true
+        arguments:
+          - @logger
+
+    btn_media.video.default_video_filter:
+        class: %btn_media.video.default_filter.class%
+        parent: btn_media.video.abstract_video_filter
+        tags:
+            - { name: btn_media.video_filter, filterName: btn_media_video_filter_default }
+            - { name: btn_media.video_filter, filterName: btn_media_thumb }
