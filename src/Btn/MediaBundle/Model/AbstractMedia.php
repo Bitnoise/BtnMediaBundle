@@ -392,7 +392,7 @@ abstract class AbstractMedia extends AbstractFile implements MediaInterface
 
         $choiceLabel .= $name;
 
-        if ($alt !== $name) {
+        if ($alt && $alt !== $name) {
             $choiceLabel .= ' (' .  $alt . ')';
         }
 
