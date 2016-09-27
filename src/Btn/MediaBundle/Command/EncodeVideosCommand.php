@@ -11,7 +11,7 @@ class EncodeVideosCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('btn_media:encode_videos')
+            ->setName('btn:media:encode_videos')
         ;
     }
 
