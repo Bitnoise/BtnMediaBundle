@@ -25,7 +25,7 @@ class MediaUploader
     private $uploadedMedias;
     /** @var string $cacheDirectory */
     private $cacheDirectory;
-    /** @var Btn\MediaBundle\Adapter\AdapterInterface\ $adapter */
+    /** @var AdapterInterface $adapter */
     private $adapter;
     /** @var boolean $autoExtract */
     private $autoExtract;
