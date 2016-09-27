@@ -28,7 +28,7 @@ class DefaultAdapter implements AdapterInterface
     /**
      * @param EntityProviderInterface $mediaProvider
      * @param EntityProviderInterface $mediaCategoryProvider
-     * @param FormFactory             $formFactory
+     * @param FormFactoryInterface    $formFactory
      * @param AbstractType            $form                  instance of form AbstractType
      */
     public function __construct(

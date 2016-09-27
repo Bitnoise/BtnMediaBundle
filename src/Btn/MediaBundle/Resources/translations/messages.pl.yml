@@ -36,3 +36,5 @@ btn_media.form.type.media_category.label: Kategoria
 
 btn_media.media_category_node_content_provider.name: Kategoria mediów
 btn_media.menu_navbar.media_item.label: Media
+
+btn_media.video_is_processing: Video jest przetwarzane...

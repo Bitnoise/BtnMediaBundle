@@ -81,12 +81,18 @@ abstract class AbstractMedia extends AbstractFile implements MediaInterface
     protected $thumbExtensions = array('jpeg', 'jpg', 'png', 'gif');
 
     /**
+     * @var array
+     */
+    protected $videoExtensions = array('mp4');
+
+    /**
      *
      */
     protected $previewIcons = array(
         'application/pdf' => 'pdf.png',
         'application/zip' => 'zip.png',
-        '_default'        => '_blank.png',
+        'video/mp4' => 'mp4.png',
+        '_default' => '_blank.png',
     );
 
     /**
@@ -211,6 +217,19 @@ abstract class AbstractMedia extends AbstractFile implements MediaInterface
     {
         $extension = $this->getFileExt();
         if (($extension && in_array(strtolower($extension), $this->thumbExtensions))) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     *
+     */
+    public function isVideo()
+    {
+        $extension = $this->getFileExt();
+        if (($extension && in_array(strtolower($extension), $this->videoExtensions))) {
             return true;
         }
 
@@ -373,7 +392,7 @@ abstract class AbstractMedia extends AbstractFile implements MediaInterface
 
         $choiceLabel .= $name;
 
-        if ($alt !== $name) {
+        if ($alt && $alt !== $name) {
             $choiceLabel .= ' (' .  $alt . ')';
         }
 
