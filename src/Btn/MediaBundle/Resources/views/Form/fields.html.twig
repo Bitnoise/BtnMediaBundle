@@ -5,12 +5,12 @@
             {% if form.vars.data.isVideo %}
                 {% set videoSrc = form.vars.data|btn_get_media_url(preview_filter) %}
                 {% if videoSrc %}
-                    <video src="{{ videoSrc }}" controls></video>
+                    <video src="{{ videoSrc }}" class="btn-preview-filter-{{ preview_filter }}" controls></video>
                 {% else %}
                     {% trans %}btn_media.video_is_processing{% endtrans %}
                 {% endif %}
             {% else %}
-                <img src="{{ form.vars.data.path|imagine_filter(preview_filter) }}" alt=""/>
+                <img src="{{ form.vars.data.path|imagine_filter(preview_filter) }}" class="btn-preview-filter-{{ preview_filter }}" alt=""/>
             {% endif %}
         </div>
     {% endif %}
