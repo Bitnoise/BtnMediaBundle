@@ -32,6 +32,7 @@ class MediaType extends AbstractType
         }
 
         $this->assetLoader->load('btn_media_modal_js');
+        $this->assetLoader->load('btn_media_preview_css');
     }
 
     /**

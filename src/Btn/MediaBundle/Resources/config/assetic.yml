@@ -8,6 +8,11 @@ assetic:
                 - @BtnMediaBundle/Resources/public/css/modal.css
             output: css/btn_media.modal.css
 
+        btn_media_preview_css:
+            inputs:
+                - @BtnMediaBundle/Resources/public/css/preview.css
+            output: css/btn_media.preview.css
+
         # JS SECTION ###########################################################
 
         btn_media_modal_js:

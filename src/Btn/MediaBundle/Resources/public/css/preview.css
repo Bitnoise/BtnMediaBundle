@@ -1,0 +1,4 @@
+.btn-preview-media img,
+.btn-preview-media video {
+    max-width: 100%;
+}
