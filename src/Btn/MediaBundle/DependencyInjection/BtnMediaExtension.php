@@ -44,14 +44,12 @@ class BtnMediaExtension extends AbstractExtension
     {
         parent::prepend($container);
 
+        $this->prependVideo($container);
+
         $loader = $this->getConfigLoader($container);
 
         if ($container->hasExtension('liip_imagine')) {
             $loader->load('liip_imagine');
-        }
-
-        if ($container->hasExtension('dubture_f_fmpeg')) {
-            $loader->load('video_services');
         }
 
         // add form resource
@@ -70,6 +68,24 @@ class BtnMediaExtension extends AbstractExtension
                 ));
             }
         }
+    }
 
+    private function prependVideo(ContainerBuilder $container ) {
+        if (!$container->hasExtension('dubture_f_fmpeg')) {
+            return;
+        }
+
+        $loader = $this->getConfigLoader($container);
+        $loader->load('video_services');
+
+        $extensionConfig = $container->getExtensionConfig('btn_media');
+        if (!array_key_exists('allowed_extensions', $extensionConfig[0]['media'])) {
+            $config = $this->getProcessedConfig($container);
+            $container->prependExtensionConfig('btn_media', array(
+                'media' => array(
+                    'allowed_extensions' => array_merge($config['media']['allowed_extensions'], array('mp4')),
+                ),
+            ));
+        }
     }
 }
