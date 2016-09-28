@@ -4,26 +4,34 @@ namespace Btn\MediaBundle\Video;
 
 use Btn\MediaBundle\Model\MediaInterface;
 use Btn\BaseBundle\Provider\EntityProviderInterface;
+use Btn\MediaBundle\Url\UrlResolverTypeHandlerInterface;
+use Btn\MediaBundle\Video\Encoder\VideoEncoderFilterManager;
 
-class VideoFilterResolver
+class VideoUrlResolver implements UrlResolverTypeHandlerInterface
 {
     /** @var EntityProviderInterface */
     private $provider;
-    /** @var VideoFilterManager */
+    /** @var VideoEncoderFilterManager */
     private $filterManager;
 
     /**
-     * VideoFilterResolver constructor.
-     *
-     * @param $provider
+     * @param EntityProviderInterface   $provider
+     * @param VideoEncoderFilterManager $filterManager
      */
-    public function __construct(EntityProviderInterface $provider, VideoFilterManager $filterManager)
+    public function __construct(EntityProviderInterface $provider, VideoEncoderFilterManager $filterManager)
     {
         $this->provider = $provider;
         $this->filterManager = $filterManager;
     }
 
-    public function resolve(MediaInterface $media, $filterName)
+    /**
+     * @param MediaInterface $media
+     * @param string         $filterName
+     *
+     * @return bool|mixed
+     * @throws \Exception
+     */
+    public function getBrowserPath(MediaInterface $media, $filterName = null)
     {
         $filter = $this->filterManager->get($filterName);
 
@@ -37,11 +45,6 @@ class VideoFilterResolver
             return $filter->getFileName($media);
         }
 
-        return false;
-    }
-
-    public function isResolved(MediaInterface $mediaInterface, $filterName)
-    {
-        return $this->resolve($mediaInterface, $filterName);
+        return '';
     }
 }

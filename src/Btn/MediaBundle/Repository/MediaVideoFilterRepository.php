@@ -8,13 +8,30 @@ use Doctrine\ORM\EntityRepository;
 
 class MediaVideoFilterRepository extends EntityRepository
 {
-    public function findAllToEncode()
+    public function getVideosToEncodeQueryBuilder()
     {
         $qb = $this->createQueryBuilder('mvf');
 
         $qb->andWhere('mvf.status = :status');
         $qb->setParameter('status', MediaVideoFilter::WAITING);
+        $qb->orderBy('mvf.id', 'DESC');
 
+        return $qb;
+    }
+
+    public function findVideosToEncode($limit)
+    {
+        $qb = $this->getVideosToEncodeQueryBuilder();
+
+        $q = $qb->getQuery();
+        $q->setMaxResults($limit);
+
+        return $q->getResult();
+    }
+
+    public function findAllToEncode()
+    {
+        $qb = $this->getVideosToEncodeQueryBuilder();
         $q = $qb->getQuery();
 
         return $q->getResult();

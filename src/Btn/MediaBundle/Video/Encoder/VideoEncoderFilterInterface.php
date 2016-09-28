@@ -1,14 +1,21 @@
 <?php
 
-namespace Btn\MediaBundle\Video;
+namespace Btn\MediaBundle\Video\Encoder;
 
 use Btn\MediaBundle\Model\MediaInterface;
 use FFMpeg\Filters\FiltersCollection;
 use FFMpeg\Media\Video;
 use FFMpeg\Format\VideoInterface;
 
-interface VideoFilterInterface
+interface VideoEncoderFilterInterface
 {
+    /**
+     * @param Video $video
+     *
+     * @return bool
+     */
+    public function shouldEncode(Video $video);
+
     /**
      * @param Video $video
      *

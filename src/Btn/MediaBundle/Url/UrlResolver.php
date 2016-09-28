@@ -7,16 +7,27 @@ use Btn\MediaBundle\Video\VideoFilterResolver;
 
 class UrlResolver
 {
-    /** @var VideoFilterResolver */
-    private $videoFilterResolver;
-
     /** @var string */
     private $baseUrl;
 
-    public function __construct($baseUrl, VideoFilterResolver $videoFilterResolver)
+    /** @var array */
+    private $typeHandlers = [];
+
+    /**
+     * @param string $baseUrl
+     */
+    public function __construct($baseUrl)
     {
         $this->baseUrl = rtrim($baseUrl, '/').'/';
-        $this->videoFilterResolver = $videoFilterResolver;
+    }
+
+    /**
+     * @param UrlResolverTypeHandlerInterface $typeHandler
+     * @param string                          $type
+     */
+    public function addTypeHandler(UrlResolverTypeHandlerInterface $typeHandler, $type)
+    {
+        $this->typeHandlers[$type] = $typeHandler;
     }
 
     /**
@@ -27,10 +38,11 @@ class UrlResolver
      */
     public function getBrowserPath(MediaInterface $media, $filter = '')
     {
+        $type = $media->getType();
         $path = $media->getPath();
 
-        if ($media->isVideo()) {
-            $path = $this->videoFilterResolver->resolve($media, $filter);
+        if (array_key_exists($type, $this->typeHandlers)) {
+            $path = $this->typeHandlers[$type]->getBrowserPath($media, $filter);
         }
 
         if ($path) {
