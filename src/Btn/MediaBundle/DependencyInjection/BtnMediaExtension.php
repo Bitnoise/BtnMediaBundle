@@ -44,9 +44,14 @@ class BtnMediaExtension extends AbstractExtension
     {
         parent::prepend($container);
 
+        $loader = $this->getConfigLoader($container);
+
         if ($container->hasExtension('liip_imagine')) {
-            $loader = $this->getConfigLoader($container);
             $loader->load('liip_imagine');
+        }
+
+        if ($container->hasExtension('dubture_f_fmpeg')) {
+            $loader->load('video_services');
         }
 
         // add form resource

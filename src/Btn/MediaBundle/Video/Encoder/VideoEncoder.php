@@ -1,6 +1,6 @@
 <?php
 
-namespace Btn\MediaBundle\Video;
+namespace Btn\MediaBundle\Video\Encoder;
 
 use Alchemy\BinaryDriver\Listeners\DebugListener;
 use Btn\MediaBundle\Model\MediaInterface;
@@ -13,7 +13,7 @@ class VideoEncoder
 {
     /** @var FFMpeg */
     private $ffmpeg;
-    /** @var FilterManager */
+    /** @var VideoEncoderFilterManager */
     private $filterManager;
     /** @var LoggerInterface */
     private $logger;
@@ -25,10 +25,10 @@ class VideoEncoder
     /**
      * VideoEncoder constructor.
      *
-     * @param FFMpeg             $ffmpeg
-     * @param VideoFilterManager $filterManager
+     * @param FFMpeg                    $ffmpeg
+     * @param VideoEncoderFilterManager $filterManager
      */
-    public function __construct(FFMpeg $ffmpeg, VideoFilterManager $filterManager, LoggerInterface $logger)
+    public function __construct(FFMpeg $ffmpeg, VideoEncoderFilterManager $filterManager, LoggerInterface $logger)
     {
         $this->ffmpeg = $ffmpeg;
         $this->filterManager = $filterManager;
@@ -49,32 +49,38 @@ class VideoEncoder
      */
     public function encode(MediaInterface $media, $filterName)
     {
+        $filter = $this->filterManager->get($filterName);
+        $outputExt = $filter->getExt();
+        $outputFileName = $filter->getFileName($media);
+        $targetPath = 'gaufrette://btn_media/'.$filterName.'/'.$outputFileName;
+
         $file = $media->getPath();
         $ext = $media->getExt();
+
         $tmpInput = $this->tmpFs->createTemporaryFile('tmp-video-input', null, $ext);
 
         copy('gaufrette://btn_media/'.$file, $tmpInput);
-
         $video = $this->ffmpeg->open($tmpInput);
 
-        $filter = $this->filterManager->get($filterName);
+        if ($filter->shouldEncode($video)) {
+            $filterCollection = $filter->getFilterCollection($video);
+            $format = $filter->getFormat($video);
 
-        $filterCollection = $filter->getFilterCollection($video);
-        $format = $filter->getFormat($video);
+            if ($filterCollection) {
+                $video->setFiltersCollection($filterCollection);
+            }
 
-        if ($filterCollection) {
-            $video->setFiltersCollection($filterCollection);
+            $tmpOutput = $this->tmpFs->createTemporaryFile('tmp-video-output', null, $outputExt);
+
+            $video->save($format, $tmpOutput);
+
+            copy($tmpOutput, $targetPath);
+
+            $this->fs->remove($tmpOutput);
+        } else {
+            copy($tmpInput, $targetPath);
         }
 
-        $outputExt = $filter->getExt();
-        $tmpOutput = $this->tmpFs->createTemporaryFile('tmp-video-output', null, $outputExt);
-
-        $video->save($format, $tmpOutput);
-        $outputFileName = $filter->getFileName($media);
-
-        copy($tmpOutput, 'gaufrette://btn_media/'.$filterName.'/'.$outputFileName);
-
-        $this->fs->remove($tmpOutput);
         $this->fs->remove($tmpInput);
     }
 }

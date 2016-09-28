@@ -1,13 +1,13 @@
 <?php
 
-namespace Btn\MediaBundle\Video;
+namespace Btn\MediaBundle\Video\Encoder;
 
 use Btn\MediaBundle\Model\MediaInterface;
 use FFMpeg\Media\Video;
 use FFMpeg\Format\Video\X264;
 use Psr\Log\LoggerInterface;
 
-abstract class AbstractVideoFilter implements VideoFilterInterface
+abstract class AbstractVideoEncoderFilter implements VideoEncoderFilterInterface
 {
     /** @var LoggerInterface */
     private $logger;
@@ -18,6 +18,14 @@ abstract class AbstractVideoFilter implements VideoFilterInterface
     public function __construct(LoggerInterface $logger = null)
     {
         $this->logger = $logger;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function shouldEncode(Video $video)
+    {
+        return true;
     }
 
     /**

@@ -16,6 +16,7 @@ class BtnMediaBundle extends Bundle
         parent::build($container);
 
         $container->addCompilerPass(new Compiler\WysiwygCompilerPass());
-        $container->addCompilerPass(new Compiler\VideoFilterCompilerPass());
+        $container->addCompilerPass(new Compiler\VideoEncoderFilterCompilerPass());
+        $container->addCompilerPass(new Compiler\UrlResolverTypeHandlerCompilerPass());
     }
 }

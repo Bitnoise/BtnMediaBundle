@@ -1,0 +1,48 @@
+parameters:
+    btn_media.video.encoder.video_encoder_filter_manager.class: Btn\MediaBundle\Video\Encoder\VideoEncoderFilterManager
+    btn_media.video.encoder.video_encoder.class: Btn\MediaBundle\Video\Encoder\VideoEncoder
+    btn_media.video.encoder.abstract_video_encoder_filter.class: Btn\MediaBundle\Video\Encoder\AbstractVideoEncoderFilter
+    btn_media.video.encoder.default_video_encoder_filter.class: Btn\MediaBundle\Video\Encoder\DefaultVideoEncoderFilter
+    btn_media.video.url_resolver.class: Btn\MediaBundle\Video\VideoUrlResolver
+
+services:
+    btn_media.provider.media_video_filter:
+        class: '%btn_base.provider.entity.class%'
+        parent: btn_base.provider.abstract_entity
+        arguments:
+          - '%btn_media.media_video_filter.class%'
+
+    btn_media.video.encoder.video_encoder_filter_manager:
+        class: '%btn_media.video.encoder.video_encoder_filter_manager.class%'
+
+    btn_media.video.encoder.filter_manager: '@btn_media.video.encoder.video_encoder_filter_manager'
+
+    btn_media.video.encoder.video_encoder:
+        class: '%btn_media.video.encoder.video_encoder.class%'
+        arguments:
+            - '@dubture_ffmpeg.ffmpeg'
+            - '@btn_media.video.encoder.filter_manager'
+            - '@logger'
+
+    btn_media.video.encoder: '@btn_media.video.encoder.video_encoder'
+
+    btn_media.video.encoder.abstract_video_encoder_filter:
+        class: '%btn_media.video.encoder.abstract_video_encoder_filter.class%'
+        abstract: true
+        arguments:
+          - '@logger'
+
+    btn_media.video.encoder.default_video_encoder_filter:
+        class: '%btn_media.video.encoder.default_video_encoder_filter.class%'
+        parent: btn_media.video.encoder.abstract_video_encoder_filter
+        tags:
+            - { name: btn_media.video_encoder_filter, filterName: btn_media_video_filter_default }
+            - { name: btn_media.video_encoder_filter, filterName: btn_media_thumb }
+
+    btn_media.video.url_resolver:
+        class: '%btn_media.video.url_resolver.class%'
+        arguments:
+            - '@btn_media.provider.media_video_filter'
+            - '@btn_media.video.encoder.filter_manager'
+        tags:
+            - { name: btn_media.url_resolver_type_handler, type: video/mp4 }

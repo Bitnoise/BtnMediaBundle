@@ -1,17 +1,17 @@
 <?php
 
-namespace Btn\MediaBundle\Video;
+namespace Btn\MediaBundle\Video\Encoder;
 
-class VideoFilterManager
+class VideoEncoderFilterManager
 {
     /** @var array */
     private $filters = array();
 
     /**
-     * @param VideoFilterInterface $filter
-     * @param string               $filterName
+     * @param VideoEncoderFilterInterface $filter
+     * @param string                      $filterName
      */
-    public function register(VideoFilterInterface $filter, $filterName)
+    public function register(VideoEncoderFilterInterface $filter, $filterName)
     {
         $this->filters[$filterName] = $filter;
     }
@@ -29,13 +29,13 @@ class VideoFilterManager
     /**
      * @param $filterName
      *
-     * @return mixed
+     * @return VideoEncoderFilterInterface
      * @throws \Exception
      */
     public function get($filterName)
     {
         if (!$this->has($filterName)) {
-            throw new \Exception(sprintf('Missing video filter "%s"', $name));
+            throw new \Exception(sprintf('Missing video encoder filter "%s"', $filterName));
         }
 
         return $this->filters[$filterName];
