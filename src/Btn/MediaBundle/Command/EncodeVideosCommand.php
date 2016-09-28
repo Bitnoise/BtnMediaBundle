@@ -13,6 +13,7 @@ class EncodeVideosCommand extends ContainerAwareCommand
     {
         $this
             ->setName('btn:media:encode_videos')
+            ->setDescription('Convert videos in video filter queue')
             ->addOption('limit', 'l', InputOption::VALUE_REQUIRED, 'Number of videos to encode', 1)
         ;
     }
