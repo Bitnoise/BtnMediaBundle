@@ -38,3 +38,10 @@ btn_media.media_category_node_content_provider.name: Media category provider
 btn_media.menu_navbar.media_item.label: Media
 
 btn_media.video_is_processing: Video is processing...
+
+btn_media.form.type.media_group.label: Group
+btn_media.form.type.media_group.placeholder: Select group
+
+btn_media.media.groups.images: Images
+btn_media.media.groups.documents: Documents
+btn_media.media.groups.videos: Videos

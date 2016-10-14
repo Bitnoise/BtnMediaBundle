@@ -45,6 +45,23 @@ class MediaCategoryControlController extends CrudController
             'categories'  => $repo->findAll(),
             'currentNode' => $current,
             'modal'       => $request->get('modal'),
+            'categoryLinkDefaultParams' => $this->generateCategoryLinkDefaultParams($request),
         );
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return array
+     */
+    private function generateCategoryLinkDefaultParams(Request $request)
+    {
+        $linkDefaultParams = array();
+        $group = $request->get('group');
+        if ($group) {
+            $linkDefaultParams['group'] = $group;
+        }
+
+        return $linkDefaultParams;
     }
 }

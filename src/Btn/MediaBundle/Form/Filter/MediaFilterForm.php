@@ -4,6 +4,7 @@ namespace Btn\MediaBundle\Form\Filter;
 
 use Btn\AdminBundle\Form\AbstractFilterForm;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class MediaFilterForm extends AbstractFilterForm
 {
@@ -21,9 +22,24 @@ class MediaFilterForm extends AbstractFilterForm
                     'placeholder' => 'btn_media.type_here',
                 ),
             ))
-            ->add('category', 'btn_media_category', array(
+            ->add('category', $options['category_field_hidden'] ? 'hidden' : 'btn_media_category', array(
+                'required' => false,
+            ))
+            ->add('group', $options['media_group_field_hidden'] ? 'hidden' : 'btn_media_group', array(
                 'required' => false,
             ))
         ;
     }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        parent::configureOptions($resolver);
+
+        $resolver->setDefined('media_group_field_hidden');
+        $resolver->setDefault('media_group_field_hidden', false);
+
+        $resolver->setDefined('category_field_hidden');
+        $resolver->setDefault('category_field_hidden', false);
+    }
+
 }

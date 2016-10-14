@@ -2,8 +2,9 @@
     class="jstree-open"
     data-jstree='{"icon":"glyphicon glyphicon-file"{{ currentNode and (category.id == currentNode.id) ? ',"selected":true' }}}'
     >
-    <a href="{{ url('btn_media_mediacontrol_media_index_category', {'category': category.id}) }}"
+    <a href="{{ url('btn_media_mediacontrol_media_index_category', categoryLinkDefaultParams|merge({'category': category.id})) }}"
         data-remote="formContainer"
         btn-media-category="{{ category.id }}"
+        btn-media-query-params="{{ categoryLinkDefaultParams|json_encode() }}"
         class="btn-admin-tree-title">{{ category.name }}</a>
 </li>

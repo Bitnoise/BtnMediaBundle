@@ -9,3 +9,4 @@ services:
         calls:
             - [setType, [@btn_media.form.filter.media]]
             - [setEntityProvider, [@btn_media.provider.media]]
+            - [setGroups, [%btn_media.media.groups%]]

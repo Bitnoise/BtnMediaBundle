@@ -2,7 +2,7 @@
 <div id="btn-media-tree" class="top-offset" btn-jstree {{ not modal ? 'btn-jstree-change="reload"' }}>
     <ul>
         <li class="{{ categories ? 'jstree-open' : 'jstree-closed' }}" data-jstree='{"icon":"glyphicon glyphicon-file"}'> {# {{ categories ? ',"opened":true' }} #}
-            <a href="{{ url('btn_media_mediacontrol_media_index') }}"
+            <a href="{{ url('btn_media_mediacontrol_media_index', categoryLinkDefaultParams) }}"
                 data-remote="formContainer"
                 class="btn-admin-tree-title">{{ 'btn_media.media.all'|trans }}</a>
             <ul>
