@@ -25,6 +25,7 @@ class BtnMediaExtension extends AbstractExtension
         $container->setParameter('btn_media.media.max_size', $config['media']['max_size']);
         $container->setParameter('btn_media.media.base_url', $config['media']['base_url']);
         $container->setParameter('btn_media.media.auto_extract', $config['media']['auto_extract']);
+        $container->setParameter('btn_media.media.groups', $config['media']['groups']);
         $container->setParameter('btn_media.media_category.class', $config['media_category']['class']);
         $container->setParameter(
             'btn_media.media.imagine.filter_original',
@@ -79,11 +80,22 @@ class BtnMediaExtension extends AbstractExtension
         $loader->load('video_services');
 
         $extensionConfig = $container->getExtensionConfig('btn_media');
+        $config = $this->getProcessedConfig($container);
         if (!array_key_exists('allowed_extensions', $extensionConfig[0]['media'])) {
-            $config = $this->getProcessedConfig($container);
             $container->prependExtensionConfig('btn_media', array(
                 'media' => array(
                     'allowed_extensions' => array_merge($config['media']['allowed_extensions'], array('mp4')),
+                ),
+            ));
+        }
+        if (!array_key_exists('groups', $extensionConfig[0]['media'])) {
+            $container->prependExtensionConfig('btn_media', array(
+                'media' => array(
+                    'groups' => array_merge($config['media']['groups'], array(array(
+                        'name' => 'videos',
+                        'label' => 'btn_media.media.groups.videos',
+                        'mime_types' => array('video/mp4'),
+                    ))),
                 ),
             ));
         }

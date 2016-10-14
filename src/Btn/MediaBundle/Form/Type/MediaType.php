@@ -44,6 +44,7 @@ class MediaType extends AbstractType
 
         $resolver->setOptional(array(
             'preview',
+            'media_group',
         ));
 
         $resolver->setDefaults(array(
@@ -53,7 +54,6 @@ class MediaType extends AbstractType
             'class'         => $this->class,
             'data_class'    => $this->class,
             'attr'          => array(
-                'btn-media'          => $this->router->generate($this->getModalRouteName()),
                 'btn-media-select'   => $this->trans('btn_media.form.type.media.select'),
                 'btn-media-edit'     => $this->trans('btn_media.form.type.media.edit'),
                 'btn-media-edit-url' => $this->router->generate('btn_media_mediacontrol_media_edit', array('id' => 0)),
@@ -85,6 +85,15 @@ class MediaType extends AbstractType
 
         $view->vars['preview'] = $options['preview'] ? true : false;
         $view->vars['preview_filter'] = is_string($options['preview']) ? $options['preview'] : 'btn_media_thumb';
+
+        if (!array_key_exists('btn-media', $view->vars)) {
+            $params = array('filter' => array());
+            if (array_key_exists('media_group', $options)) {
+                // $params['filter']['group'] = $options['media_group'];
+                $params['group'] = $options['media_group'];
+            }
+            $view->vars['attr']['btn-media'] = $this->router->generate($this->getModalRouteName(), $params);
+        }
     }
 
     /**

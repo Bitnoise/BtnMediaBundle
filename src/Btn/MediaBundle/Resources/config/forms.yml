@@ -4,6 +4,7 @@ parameters:
     btn_media.form.media_category_control.class: Btn\MediaBundle\Form\MediaCategoryControlForm
     btn_media.form.type.media.class: Btn\MediaBundle\Form\Type\MediaType
     btn_media.form.type.media_category.class: Btn\MediaBundle\Form\Type\MediaCategoryType
+    btn_media.form.type.media_group.class: Btn\MediaBundle\Form\Type\MediaGroupType
     btn_media.form.type.media_embedded.class: Btn\MediaBundle\Form\Type\MediaEmbeddedType
     btn_media.form.type.file.class: Btn\MediaBundle\Form\Type\FileType
     btn_media.form.filter.media.class: Btn\MediaBundle\Form\Filter\MediaFilterForm
@@ -49,6 +50,13 @@ services:
             - [setEntityProvider, [@btn_media.provider.media_category]]
         tags:
             - { name: form.type, alias: btn_media_category }
+
+    btn_media.form.type.media_group:
+        class: %btn_media.form.type.media_group.class%
+        arguments:
+          - %btn_media.media.groups%
+        tags:
+            - { name: form.type, alias: btn_media_group }
 
     btn_media.form.type.media_embedded:
         class: %btn_media.form.type.media_embedded.class%

@@ -162,6 +162,8 @@ class MediaControlController extends AbstractControlController
      **/
     public function modalAction(Request $request)
     {
+        $request->attributes->set('modal', true);
+
         $data = $this->getListData($request);
         if ($request->get('CKEditor')) {
             return $this->render('BtnMediaBundle:MediaModal:cke.html.twig', $data);
@@ -180,7 +182,18 @@ class MediaControlController extends AbstractControlController
      **/
     public function modalContentAction(Request $request)
     {
+        $request->attributes->set('modal', true);
+
         return $this->getListData($request);
+    }
+
+    private function generateFilterFormUrl(Request $request) {
+        $category = $request->get('category');
+        if ($category) {
+            return $this->generateUrl('btn_media_mediacontrol_media_index_category', array('category' => $category));
+        }
+
+        return $this->generateUrl('btn_media_mediacontrol_media_index');
     }
 
     /**
@@ -189,13 +202,20 @@ class MediaControlController extends AbstractControlController
     private function getListData(Request $request, $perPage = 6)
     {
         $category = $request->get('category');
+        $group = $request->get('group');
         $filter = $this->get('btn_media.filter.media');
 
         $filterForm = $filter->createForm(array(
             'category' => $request->attributes->get('category')
         ), array(
-            'action' => $this->generateUrl('btn_media_mediacontrol_media_index'),
+            'category_field_hidden' => $category,
+            'media_group_field_hidden' => $request->attributes->has('modal'),
+            'action' => $this->generateFilterFormUrl($request),
         ));
+
+        if ($group) {
+            $filterForm->get('group')->setData($group);
+        }
 
         if ($filter->applyFilters()) {
             $entities = $filter->getQuery();
@@ -221,6 +241,7 @@ class MediaControlController extends AbstractControlController
             'pagination' => $pagination,
             'filter_form' => $filterForm ? $filterForm->createView() : null,
             'filter_original' => $filterOriginal,
+            'group' => $request->get('group'),
         );
     }
 }

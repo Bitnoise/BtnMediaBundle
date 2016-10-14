@@ -37,6 +37,31 @@ class Configuration implements ConfigurationInterface
                             ->end()
                         ->end()
 
+                        ->arrayNode('groups')->defaultValue(
+                            array(
+                                array(
+                                    'name' => 'images',
+                                    'label' => 'btn_media.media.groups.images',
+                                    'mime_types' => array('image/jpeg', 'image/jpg', 'image/png'),
+                                ),
+                                array(
+                                    'name' => 'documents',
+                                    'label' => 'btn_media.media.groups.documents',
+                                    'mime_types' => array('application/pdf'),
+                                ),
+                            )
+                        )
+                            ->prototype('array')
+                                ->children()
+                                    ->scalarNode('name')->defaultValue(null)->end()
+                                    ->scalarNode('label')->isRequired()->end()
+                                    ->arrayNode('mime_types')
+                                        ->prototype('scalar')->end()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+
                     ->end()
                 ->end()
                 ->arrayNode('media_category')

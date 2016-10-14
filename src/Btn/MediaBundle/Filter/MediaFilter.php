@@ -6,6 +6,16 @@ use Btn\BaseBundle\Filter\AbstractFilter;
 
 class MediaFilter extends AbstractFilter
 {
+    private $groups;
+
+    /**
+     * @param array $groups
+     */
+    public function setGroups(array $groups)
+    {
+        $this->groups = $groups;
+    }
+
     public function applyFilters()
     {
         $result = false;
@@ -21,6 +31,22 @@ class MediaFilter extends AbstractFilter
             $result = true;
         }
 
+        if (($group = $this->getValue('group'))) {
+            $mimeTypes = $this->getMimeTypesForGroup($group);
+            if ($mimeTypes) {
+                $qb->andWhere('m.type IN (:types)')->setParameter(':types', $mimeTypes);
+                $result = true;
+            }
+        }
+
         return $result;
+    }
+
+    private function getMimeTypesForGroup($groupName) {
+        foreach ($this->groups as $group) {
+            if ($group['name'] === $groupName) {
+                return $group['mime_types'];
+            }
+        }
     }
 }

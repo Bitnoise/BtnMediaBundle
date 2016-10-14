@@ -81,7 +81,11 @@
                 //reload content on category link click
                 .on('click', '#btn-media-tree ul li a', function () {
                     var category = $(this).attr('btn-media-category');
-                    updateModalBody(category ? (paginationUrl + '/' + category) : paginationUrl);
+                    var modalBodyUrl = (category ? (paginationUrl + '/' + category) : paginationUrl)
+                    var queryParams = JSON.parse($(this).attr('btn-media-query-params'));
+                    modalBodyUrl += (modalBodyUrl.indexOf('?') > 0) ? '&' : '?';
+                    modalBodyUrl += $.param(queryParams);
+                    updateModalBody(modalBodyUrl);
 
                     return false;
                 })
